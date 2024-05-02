@@ -1,21 +1,22 @@
+import "../card.css";
+
 interface Props {
   card: CardObj;
 }
 
 export default function Card({ card }: Props) {
-  const style = {
-    display: "grid",
-    gridTemplateRows: "maxContent 200px 1fr",
-    backgroundColor: "white",
-    color: "black",
-  };
-
   return (
     <>
-      <div style={style}>
-        <p>Suit: {card.suit}</p>
-        <p>Display Value: {card.displayValue}</p>
-        <p>Value: {card.value}</p>
+      <div className="card">
+        <div className="card-details">
+          <p className="text-title">
+            Suit: {card.suit}
+            <br></br>
+            Display Value: {card.displayValue}
+            <br></br>
+            Value: {card.value}
+          </p>
+        </div>
       </div>
     </>
   );
