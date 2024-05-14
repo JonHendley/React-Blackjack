@@ -3,4 +3,5 @@ type CardObj = {
     suit: string;
     displayValue: string;
     value: number;
+    src: string;
 };

@@ -7,16 +7,12 @@ interface Props {
 export default function Card({ card }: Props) {
   return (
     <>
-      <div className="card">
-        <div className="card-details">
-          <p className="text-title">
-            Suit: {card.suit}
-            <br></br>
-            Display Value: {card.displayValue}
-            <br></br>
-            Value: {card.value}
-          </p>
-        </div>
+      <div style={{ padding: "1%" }}>
+        <img
+          src={"/src/assets/cards_png/" + card.src + ".png"}
+          alt={card.displayValue + "," + card.suit}
+          style={{ height: "30vh" }}
+        />
       </div>
     </>
   );
