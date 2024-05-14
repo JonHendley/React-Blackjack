@@ -3,6 +3,7 @@
   "homepage": "https://jonhendley.github.io/react-blackjack",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://jonhendley.github.io/react-blackjack",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
