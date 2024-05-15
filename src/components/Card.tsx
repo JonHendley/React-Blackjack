@@ -9,7 +9,7 @@ export default function Card({ card }: Props) {
     <>
       <div style={{ padding: "1%" }}>
         <img
-          src={"/public/cards_png/" + card.src + ".png"}
+          src={"/cards_png/" + card.src + ".png"}
           alt={card.displayValue + "," + card.suit}
           style={{ height: "30vh" }}
         />
