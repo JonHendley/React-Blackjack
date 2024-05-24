@@ -1,8 +1,8 @@
 /* eslint-disable prefer-const */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import "../table.css";
-import { DeckOfCards } from "../constants";
+import { CardBack, DeckOfCards } from "../constants";
 
 export default function Table() {
   const [availableCards, setAvailableCards] = useState<Array<CardObj>>(
@@ -13,6 +13,14 @@ export default function Table() {
   const [playerTotal, setPlayerTotal] = useState(0);
   const [dealerTotal, setDealerTotal] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+
+  useEffect(() => {
+    // preload images into cache
+    new Image().src = import.meta.env.VITE_CARDS_PATH + CardBack.src + ".svg";
+    availableCards.forEach((card) => {
+      new Image().src = import.meta.env.VITE_CARDS_PATH + card.src + ".svg";
+    });
+  });
 
   function getRandomCard(tempAvailCards: Array<CardObj>) {
     const rndIndex = Math.floor(Math.random() * tempAvailCards.length);
@@ -102,10 +110,6 @@ export default function Table() {
     }
   }
 
-  function shouldBtnDisabled() {
-    return playerTotal >= 21 || gameOver;
-  }
-
   function whoWins() {
     if (playerTotal > 21) {
       return "You Lose";
@@ -131,14 +135,20 @@ export default function Table() {
 
   return (
     <>
-      <div>Table</div>
-      <br></br>
-      {gameOver && <div>{whoWins()}</div>}
-      <div>Dealer Total: {dealerTotal}</div>
+      {gameOver && (
+        <>
+          <div>{whoWins()}</div>
+          <div>Dealer Total: {dealerTotal}</div>
+        </>
+      )}
       <div id="dealerCards" className="container-side-by-side">
-        {dealerCards.map((card, index) => (
-          <Card card={card} key={index}></Card>
-        ))}
+        {gameOver
+          ? dealerCards.map((card, index) => (
+              <Card card={card} key={index}></Card>
+            ))
+          : dealerCards.map((card, index) => (
+              <Card card={CardBack} key={index}></Card>
+            ))}
       </div>
       <br></br>
       <div>Player Total: {playerTotal}</div>
@@ -152,14 +162,14 @@ export default function Table() {
         <button onClick={initialDeal}>Deal</button>
       ) : (
         <>
-          <button onClick={playerHit} disabled={shouldBtnDisabled()}>
+          <button onClick={playerHit} disabled={gameOver}>
             Hit
           </button>
-          <button onClick={playerStand} disabled={shouldBtnDisabled()}>
+          <button onClick={playerStand} disabled={gameOver}>
             Stand
           </button>
           &nbsp;
-          <button onClick={newDeal} disabled={!shouldBtnDisabled()}>
+          <button onClick={newDeal} disabled={!gameOver}>
             New Deal
           </button>
         </>
