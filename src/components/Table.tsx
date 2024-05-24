@@ -135,21 +135,27 @@ export default function Table() {
 
   return (
     <>
-      {gameOver && (
+      {gameOver ? (
         <>
           <div>{whoWins()}</div>
           <div>Dealer Total: {dealerTotal}</div>
-        </>
-      )}
-      <div id="dealerCards" className="container-side-by-side">
-        {gameOver
-          ? dealerCards.map((card, index) => (
+          <div id="dealerCards" className="container-side-by-side">
+            {dealerCards.map((card, index) => (
               <Card card={card} key={index}></Card>
-            ))
-          : [...Array(dealerCards.length)].map((_x, i) => (
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <br></br>
+          <br></br>
+          <div id="dealerCards" className="container-side-by-side">
+            {[...Array(dealerCards.length)].map((_x, i) => (
               <Card card={CardBack} key={i}></Card>
             ))}
-      </div>
+          </div>
+        </>
+      )}
       <br></br>
       <div>Player Total: {playerTotal}</div>
       <div id="playerCards" className="container-side-by-side">
