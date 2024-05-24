@@ -146,8 +146,8 @@ export default function Table() {
           ? dealerCards.map((card, index) => (
               <Card card={card} key={index}></Card>
             ))
-          : dealerCards.map((card, index) => (
-              <Card card={CardBack} key={index}></Card>
+          : [...Array(dealerCards.length)].map((_x, i) => (
+              <Card card={CardBack} key={i}></Card>
             ))}
       </div>
       <br></br>
