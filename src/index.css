@@ -66,3 +66,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#iconattribution {
+  color: #3e3e3e;
+}
