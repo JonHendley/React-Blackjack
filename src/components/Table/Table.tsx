@@ -71,11 +71,9 @@ export default function Table() {
 
     setPlayerTotal(calculateTotal(tempPlayerCards));
     setDealerTotal(calculateTotal(tempDealerCards));
-
     setPlayerCards(tempPlayerCards);
     setDealerCards(tempDealerCards);
     setAvailableCards(tempAvailCards);
-
     endGameIfDone(playerTotal);
   }
 
@@ -166,18 +164,18 @@ export default function Table() {
           </div>
         </>
       )}
-      <br></br>
-      <div>Player Total: {playerTotal}</div>
-      <div id="playerCards" className="container-side-by-side">
-        {playerCards.map((card, index) => (
-          <Card card={card} key={index}></Card>
-        ))}
-      </div>
-      <br></br>
       {playerCards.length === 0 ? (
         <button onClick={initialDeal}>Deal</button>
       ) : (
         <>
+          <br></br>
+          <div>Player Total: {playerTotal}</div>
+          <div id="playerCards" className="container-side-by-side">
+            {playerCards.map((card, index) => (
+              <Card card={card} key={index}></Card>
+            ))}
+          </div>
+          <br></br>
           <button onClick={playerHit} disabled={gameOver}>
             Hit
           </button>
