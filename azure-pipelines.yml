@@ -19,16 +19,9 @@ steps:
     command: 'custom'
     customCommand: 'run build'
 
-- task: CopyFiles@2
+- task: PublishBuildArtifacts@1
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**'
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy project files'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    artifactName: blackjack
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    publishLocation: 'pipeline'
-  displayName: 'Publish npm artifact'
