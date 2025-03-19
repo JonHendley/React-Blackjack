@@ -7,7 +7,7 @@
 trigger:
 - main
 
-pool: Default
+pool: Dektop
 
 steps:
 - task: Npm@1
